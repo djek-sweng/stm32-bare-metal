@@ -1,0 +1,10 @@
+.metadata
+.settings
+.mxproject
+mx.scratch
+Debug
+Release
+.DS_Store
+*.launch
+*.alpha
+*.bak
