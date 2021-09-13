@@ -116,9 +116,9 @@
 			<locationURI>PARENT-2-PROJECT_LOC/Library/Bootloader/bldr_api.h</locationURI>
 		</link>
 		<link>
-			<name>Library/Bootloader/bldr_config.h</name>
+			<name>Library/Bootloader/bldr_config.template.h</name>
 			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/Library/Bootloader/bldr_config.h</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/Library/Bootloader/bldr_config.template.h</locationURI>
 		</link>
 		<link>
 			<name>Library/Bootloader/bldr_crc16.c</name>
@@ -129,6 +129,11 @@
 			<name>Library/Bootloader/bldr_crc16.h</name>
 			<type>1</type>
 			<locationURI>PARENT-2-PROJECT_LOC/Library/Bootloader/bldr_crc16.h</locationURI>
+		</link>
+		<link>
+			<name>Library/Bootloader/bldr_defs.h</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/Library/Bootloader/bldr_defs.h</locationURI>
 		</link>
 		<link>
 			<name>Library/Bootloader/bldr_global.h</name>

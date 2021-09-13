@@ -1,0 +1,48 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "cppbuild",
+			"label": "C/C++: clang++ build active file",
+			"command": "/usr/bin/clang++",
+			"args": [
+				"-std=c++17",
+				"-stdlib=libc++",
+				"-Wall",
+				/* Include paths. */
+				"-I${workspaceFolder}/src",
+				"-I${workspaceFolder}/src/Bootloader",
+				"-I${workspaceFolder}/src/Connectivity",
+				/* Firmware: */
+				"-I${workspaceFolder}/../../../Library/Common",
+				"-I${workspaceFolder}/../../../Library/Bootloader",
+				/* Source files. */
+				"-g",
+				"${workspaceFolder}/src/main.cpp",
+				"${workspaceFolder}/src/Connectivity/Uart.cpp",
+				"${workspaceFolder}/src/Bootloader/Command.cpp",
+				"${workspaceFolder}/src/Bootloader/CommandGetVersion.cpp",
+				"${workspaceFolder}/src/Bootloader/CommandGetSessionId.cpp",
+				"${workspaceFolder}/src/Bootloader/CommandFlashUnlock.cpp",
+				"${workspaceFolder}/src/Bootloader/CommandFlashLock.cpp",
+				/* Firmware: */
+				"${workspaceFolder}/../../../Library/Bootloader/bldr_crc16.c",
+				"${workspaceFolder}/../../../Library/Bootloader/bldr_misc.c",
+				/* Output file. */
+				"-o",
+				"${workspaceFolder}/bin/bldr_uart"
+			],
+			"options": {
+				"cwd": "${fileDirname}"
+			},
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"detail": "compiler: /usr/bin/clang++"
+		}
+	]
+}

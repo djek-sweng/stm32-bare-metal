@@ -8,3 +8,5 @@ Release
 *.launch
 *.alpha
 *.bak
+bin
+obj

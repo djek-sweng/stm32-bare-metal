@@ -1,8 +1,8 @@
 /*
  * bldr_config.h
  *
- *  Created on: Jul 28, 2021
- *      Author: djek-sweng
+ *  Created on: 9 Sep 2021
+ *      Author: djek
  */
 
 #ifndef BLDR_CONFIG_H_
@@ -17,6 +17,7 @@ extern "C" {
 /*--------------------------------------------------------------------------------------------------------------------*/
 #include "main.h"
 #include "bldr_global.h"
+#include "led.h"
 
 /*--------------------------------------------------------------------------------------------------------------------*/
 /* defines */
@@ -34,7 +35,7 @@ STATIC INLINE void cb_BLDR_ReloadIwdg(void)
 
 STATIC INLINE void cb_BLDR_ToggleAliveLed(void)
 {
-  __NOP();
+  LED_GREEN_TOGGLE();
 }
 
 STATIC INLINE void cb_BLDR_SlowDownIwdg(void)
@@ -46,8 +47,6 @@ STATIC INLINE void cb_BLDR_JumpDeInit(void)
 {
   __NOP();
 }
-
-
 
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------------------------------------------------*/

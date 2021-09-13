@@ -1,12 +1,12 @@
 /*
- * bldr_misc.h
+ * bldr_config.template.h
  *
- *  Created on: Jul 31, 2021
+ *  Created on: Jul 28, 2021
  *      Author: djek-sweng
  */
 
-#ifndef BLDR_MISC_H_
-#define BLDR_MISC_H_
+#ifndef BLDR_CONFIG_TEMPLATE_H_
+#define BLDR_CONFIG_TEMPLATE_H_
 
 #ifdef __cplusplus
 extern "C" {
@@ -15,19 +15,37 @@ extern "C" {
 /*--------------------------------------------------------------------------------------------------------------------*/
 /* includes */
 /*--------------------------------------------------------------------------------------------------------------------*/
-#include <stdint.h>
-#include "bldr_defs.h"
+#include "main.h"
+#include "bldr_global.h"
 
 /*--------------------------------------------------------------------------------------------------------------------*/
 /* defines */
 /*--------------------------------------------------------------------------------------------------------------------*/
+#define BLDR_UART       (&huart2)
+#define BLDR_IWDG       (&hiwdg)
 
 /*--------------------------------------------------------------------------------------------------------------------*/
-/* prototypes */
+/* callback functions */
 /*--------------------------------------------------------------------------------------------------------------------*/
-int32_t BLDR_InitCommandMessageStruct   (BLDR_CommandMessage_t* message);
-int32_t BLDR_InitSystemStateStruct      (BLDR_SystemState_t* systemState);
-int32_t BLDR_UpdateCrc16                (BLDR_CommandMessage_t* message);
+STATIC INLINE void cb_BLDR_ReloadIwdg(void)
+{
+  IWDG_Reload(BLDR_IWDG);
+}
+
+STATIC INLINE void cb_BLDR_ToggleAliveLed(void)
+{
+  __NOP();
+}
+
+STATIC INLINE void cb_BLDR_SlowDownIwdg(void)
+{
+  __NOP();
+}
+
+STATIC INLINE void cb_BLDR_JumpDeInit(void)
+{
+  __NOP();
+}
 
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------------------------------------------------*/
@@ -36,4 +54,4 @@ int32_t BLDR_UpdateCrc16                (BLDR_CommandMessage_t* message);
 }
 #endif
 
-#endif /* BLDR_MISC_H_ */
+#endif /* BLDR_CONFIG_TEMPLATE_H_ */

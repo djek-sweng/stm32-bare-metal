@@ -1,12 +1,12 @@
 /*
- * bldr_misc.h
+ * bldr_defs.h
  *
- *  Created on: Jul 31, 2021
+ *  Created on: Jul 20, 2021
  *      Author: djek-sweng
  */
 
-#ifndef BLDR_MISC_H_
-#define BLDR_MISC_H_
+#ifndef BLDR_DEFS_H_
+#define BLDR_DEFS_H_
 
 #ifdef __cplusplus
 extern "C" {
@@ -16,18 +16,42 @@ extern "C" {
 /* includes */
 /*--------------------------------------------------------------------------------------------------------------------*/
 #include <stdint.h>
-#include "bldr_defs.h"
 
 /*--------------------------------------------------------------------------------------------------------------------*/
 /* defines */
 /*--------------------------------------------------------------------------------------------------------------------*/
+#define BLDR_COMMAND_PAYLOAD_BYTES            (64)
 
 /*--------------------------------------------------------------------------------------------------------------------*/
-/* prototypes */
+/* custom types */
 /*--------------------------------------------------------------------------------------------------------------------*/
-int32_t BLDR_InitCommandMessageStruct   (BLDR_CommandMessage_t* message);
-int32_t BLDR_InitSystemStateStruct      (BLDR_SystemState_t* systemState);
-int32_t BLDR_UpdateCrc16                (BLDR_CommandMessage_t* message);
+typedef enum CommandIdentifier
+{
+  BLDR_IDC_GET_VERSION                        = 0x30,
+  BLDR_IDC_GET_SESSION_ID                     = 0x31,
+  BLDR_IDC_FLASH_UNLOCK                       = 0x32,
+  BLDR_IDC_FLASH_LOCK                         = 0x33,
+  BLDR_IDC_FLASH_ERASE                        = 0x34,
+  BLDR_IDC_MEMORY_READ                        = 0x35,
+  BLDR_IDC_MEMORY_WRITE                       = 0x36,
+  BLDR_IDC_MEMORY_GET_CRC16                   = 0x37,
+  BLDR_IDC_SYSTEM_RESET                       = 0x38,
+  BLDR_IDC_JUMP                               = 0x39,
+} BLDR_CommandIdentifier_t;
+
+typedef struct CommandMessage
+{
+  uint8_t   Id;
+  uint8_t   Length;
+  uint8_t   Payload [BLDR_COMMAND_PAYLOAD_BYTES];
+  uint16_t  Crc16;
+} BLDR_CommandMessage_t;
+
+typedef struct SystemState
+{
+  uint32_t  CommandCounter;
+  uint32_t  ErrorRegister;
+} BLDR_SystemState_t;
 
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------------------------------------------------*/
@@ -36,4 +60,4 @@ int32_t BLDR_UpdateCrc16                (BLDR_CommandMessage_t* message);
 }
 #endif
 
-#endif /* BLDR_MISC_H_ */
+#endif /* BLDR_DEFS_H_ */

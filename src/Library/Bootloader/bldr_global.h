@@ -20,6 +20,7 @@ extern "C" {
 #include "bldr_api.h"
 #include "bldr_config.h"
 #include "bldr_crc16.h"
+#include "bldr_defs.h"
 #include "bldr_if_uart.h"
 #include "bldr_misc.h"
 #include "bldr_version.h"

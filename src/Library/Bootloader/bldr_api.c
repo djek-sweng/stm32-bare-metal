@@ -213,7 +213,7 @@ STATIC int32_t prv_BLDR_CommandGetSessionId(uint8_t* data, uint8_t* size)
 STATIC int32_t prv_BLDR_CommandFlashUnlock(uint8_t* data, uint8_t* size)
 {
   *data = 0;
-  *size = SIZE(uint8_t);
+  *size = 0;//SIZE(uint8_t);
 
   return FLASH_Unlock();
 }
@@ -221,7 +221,7 @@ STATIC int32_t prv_BLDR_CommandFlashUnlock(uint8_t* data, uint8_t* size)
 STATIC int32_t prv_BLDR_CommandFlashLock(uint8_t* data, uint8_t* size)
 {
   *data = 0;
-  *size = SIZE(uint8_t);
+  *size = 0;//SIZE(uint8_t);
 
   return FLASH_Lock();
 }
@@ -229,7 +229,7 @@ STATIC int32_t prv_BLDR_CommandFlashLock(uint8_t* data, uint8_t* size)
 STATIC int32_t prv_BLDR_CommandFlashErase(uint8_t* data, uint8_t* size, uint32_t sector, uint32_t totalNumber)
 {
   *data = 0;
-  *size = SIZE(uint8_t);
+  *size = 0;//SIZE(uint8_t);
 
   /* FLASH is locked? */
   if (TRUE == FLASH_IsLocked())
@@ -283,7 +283,7 @@ STATIC int32_t prv_BLDR_CommandMemoryRead(uint8_t* data, uint8_t* size, uint32_t
 STATIC int32_t prv_BLDR_CommandMemoryWrite(uint8_t* data, uint8_t* size, uint32_t address, uint8_t length, uint8_t* buffer)
 {
   *data = 0;
-  *size = SIZE(uint8_t);
+  *size = 0;//SIZE(uint8_t);
 
   if (IS_VALID_FLASH_ADDRESS(address) &&
       IS_VALID_FLASH_ADDRESS(address+length))
