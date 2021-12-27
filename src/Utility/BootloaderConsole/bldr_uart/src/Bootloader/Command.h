@@ -19,14 +19,15 @@ namespace Bootloader
     class Command
     {
     public:
-        Command(const char* device, int baudRate);
+        Command(const char* device, uint32_t baudRate);
        ~Command();
 
-        int TransmitReceive(BLDR_CommandMessage_t* commandMessageTx, BLDR_CommandMessage_t* commandMessageRx);
-        void PrintMessage(BLDR_CommandMessage_t* commandMessage, string title="");
+        int32_t Transmit(BLDR_CommandMessage_t* commandMessageTx);
+        int32_t Receive(BLDR_CommandMessage_t* commandMessageRx);
+        void Print(BLDR_CommandMessage_t* commandMessage, string title = "");
         void Close();
 
-        virtual int Execute() = 0;
+        virtual int32_t Execute() = 0;
 
     private:
         Uart* _uart;

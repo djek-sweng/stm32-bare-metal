@@ -25,9 +25,13 @@
 				"${workspaceFolder}/src/Bootloader/CommandGetSessionId.cpp",
 				"${workspaceFolder}/src/Bootloader/CommandFlashUnlock.cpp",
 				"${workspaceFolder}/src/Bootloader/CommandFlashLock.cpp",
-				/* Firmware: */
-				"${workspaceFolder}/../../../Library/Bootloader/bldr_crc16.c",
-				"${workspaceFolder}/../../../Library/Bootloader/bldr_misc.c",
+				"${workspaceFolder}/src/Bootloader/CommandFlashErase.cpp",
+				"${workspaceFolder}/src/Bootloader/CommandMemoryRead.cpp",
+				"${workspaceFolder}/src/Bootloader/CommandMemoryWrite.cpp",
+				"${workspaceFolder}/src/Bootloader/CommandSystemReset.cpp",
+				/* Source files from cache folder (Firmware import). */
+				"${workspaceFolder}/src/Cache/bldr_crc16.c",
+				"${workspaceFolder}/src/Cache/bldr_misc.c",
 				/* Output file. */
 				"-o",
 				"${workspaceFolder}/bin/bldr_uart"

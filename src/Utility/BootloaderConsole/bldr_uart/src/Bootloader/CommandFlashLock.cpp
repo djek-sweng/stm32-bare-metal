@@ -12,7 +12,7 @@ namespace Bootloader
 {
     CommandFlashLock::CommandFlashLock(
         const char* device,
-        int baudRate
+        uint32_t baudRate
     ) : Command { device, baudRate }
     {
     }
@@ -22,7 +22,7 @@ namespace Bootloader
         Command::Close();
     }
 
-    int CommandFlashLock::Execute()
+    int32_t CommandFlashLock::Execute()
     {
         BLDR_CommandMessage_t commandMessageTx;
         BLDR_CommandMessage_t commandMessageRx;
@@ -33,11 +33,12 @@ namespace Bootloader
         commandMessageTx.Id     = BLDR_IDC_FLASH_LOCK;
         commandMessageTx.Length = 0;
 
-        Command::TransmitReceive(&commandMessageTx, &commandMessageRx);
+        Command::Transmit(&commandMessageTx);
+        Command::Receive(&commandMessageRx);
 
-        Command::PrintMessage(&commandMessageTx, "----TX----");
-        Command::PrintMessage(&commandMessageRx, "----RX----");
+        Command::Print(&commandMessageTx, "----TX----");
+        Command::Print(&commandMessageRx, "----RX----");
 
-        return 0;
+        return NO_FAILURE;
     }
 }

@@ -5,11 +5,24 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "clang++ - Build and debug active file",
+            "name": "Debug GetSessionId",
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/bin/bldr_uart",
-            "args": [],
+            "args": ["/dev/cu.usbmodem143203", "1"],
+            "stopAtEntry": true,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "lldb",
+            "preLaunchTask": "C/C++: clang++ build active file"
+        },
+        {
+            "name": "Debug SystemReset",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/bin/bldr_uart",
+            "args": ["/dev/cu.usbmodem143203", "6", "1000"],
             "stopAtEntry": true,
             "cwd": "${fileDirname}",
             "environment": [],

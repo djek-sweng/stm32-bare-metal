@@ -12,7 +12,7 @@ namespace Bootloader
 {
     CommandGetSessionId::CommandGetSessionId(
         const char* device,
-        int baudRate
+        uint32_t baudRate
     ) : Command { device, baudRate }
     {
     }
@@ -22,7 +22,7 @@ namespace Bootloader
         Command::Close();
     }
 
-    int CommandGetSessionId::Execute()
+    int32_t CommandGetSessionId::Execute()
     {
         BLDR_CommandMessage_t commandMessageTx;
         BLDR_CommandMessage_t commandMessageRx;
@@ -33,11 +33,12 @@ namespace Bootloader
         commandMessageTx.Id     = BLDR_IDC_GET_SESSION_ID;
         commandMessageTx.Length = 0;
 
-        Command::TransmitReceive(&commandMessageTx, &commandMessageRx);
+        Command::Transmit(&commandMessageTx);
+        Command::Receive(&commandMessageRx);
 
-        Command::PrintMessage(&commandMessageTx, "----TX----");
-        Command::PrintMessage(&commandMessageRx, "----RX----");
+        Command::Print(&commandMessageTx, "----TX----");
+        Command::Print(&commandMessageRx, "----RX----");
 
-        return 0;
+        return NO_FAILURE;
     }
 }

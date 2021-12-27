@@ -18,10 +18,10 @@ namespace Bootloader
     class CommandGetSessionId : public Command
     {
     public:
-        CommandGetSessionId(const char* device, int baudRate);
+        CommandGetSessionId(const char* device, uint32_t baudRate);
        ~CommandGetSessionId();
 
-        int Execute();
+        int32_t Execute();
 
     private:
     };

@@ -175,9 +175,8 @@ STATIC int32_t prv_BLDR_IfUartCommandReceive(BLDR_CommandMessage_t* message)
 
 STATIC void prv_BLDR_IfUartBeforeNoReturn(BLDR_CommandMessage_t* messageRx, BLDR_CommandMessage_t* messageTx)
 {
-  messageTx->Id         = messageRx->Id;
-  messageTx->Length     = SIZE(uint8_t);
-  messageTx->Payload[0] = 0;
+  messageTx->Id     = messageRx->Id;
+  messageTx->Length = 0;
 
   BLDR_UpdateCrc16(messageTx);
 

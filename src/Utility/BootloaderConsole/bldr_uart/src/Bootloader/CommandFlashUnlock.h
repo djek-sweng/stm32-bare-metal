@@ -18,10 +18,10 @@ namespace Bootloader
     class CommandFlashUnlock : public Command
     {
     public:
-        CommandFlashUnlock(const char* device, int baudRate);
+        CommandFlashUnlock(const char* device, uint32_t baudRate);
        ~CommandFlashUnlock();
 
-        int Execute();
+        int32_t Execute();
 
     private:
     };

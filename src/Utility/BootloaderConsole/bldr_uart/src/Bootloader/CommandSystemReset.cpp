@@ -1,28 +1,29 @@
 /*
- * CommandGetVersion.cpp
+ * CommandSystemReset.cpp
  *
- *  Created on: Sep 10, 2021
+ *  Created on: Dec 26, 2021
  *      Author: djek-sweng
  */
 
-#include "CommandGetVersion.h"
+#include "CommandSystemReset.h"
 #include "global.h"
 
 namespace Bootloader
 {
-    CommandGetVersion::CommandGetVersion(
+    CommandSystemReset::CommandSystemReset(
         const char* device,
         uint32_t baudRate
     ) : Command { device, baudRate }
     {
+        _delay = 0;
     }
 
-    CommandGetVersion::~CommandGetVersion()
+    CommandSystemReset::~CommandSystemReset()
     {
         Command::Close();
     }
 
-    int32_t CommandGetVersion::Execute()
+    int32_t CommandSystemReset::Execute()
     {
         BLDR_CommandMessage_t commandMessageTx;
         BLDR_CommandMessage_t commandMessageRx;
@@ -30,8 +31,11 @@ namespace Bootloader
         BLDR_InitCommandMessageStruct(&commandMessageTx);
         BLDR_InitCommandMessageStruct(&commandMessageRx);
 
-        commandMessageTx.Id     = BLDR_IDC_GET_VERSION;
-        commandMessageTx.Length = 0;
+        commandMessageTx.Id     = BLDR_IDC_SYSTEM_RESET;
+        commandMessageTx.Length = 4;
+
+        uint32_t* ptr32 = (uint32_t*)&commandMessageTx.Payload[0];
+        *ptr32 = _delay;
 
         Command::Transmit(&commandMessageTx);
         Command::Receive(&commandMessageRx);
@@ -40,5 +44,12 @@ namespace Bootloader
         Command::Print(&commandMessageRx, "----RX----");
 
         return NO_FAILURE;
+    }
+
+    CommandSystemReset* CommandSystemReset::SetDelay(uint32_t delay)
+    {
+        _delay = delay;
+
+        return this;
     }
 }

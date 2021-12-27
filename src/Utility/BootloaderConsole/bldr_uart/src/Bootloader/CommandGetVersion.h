@@ -18,10 +18,10 @@ namespace Bootloader
     class CommandGetVersion : public Command
     {
     public:
-        CommandGetVersion(const char* device, int baudRate);
+        CommandGetVersion(const char* device, uint32_t baudRate);
        ~CommandGetVersion();
 
-        int Execute();
+        int32_t Execute();
 
     private:
     };

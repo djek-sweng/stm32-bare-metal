@@ -18,10 +18,10 @@ namespace Bootloader
     class CommandFlashLock : public Command
     {
     public:
-        CommandFlashLock(const char* device, int baudRate);
+        CommandFlashLock(const char* device, uint32_t baudRate);
        ~CommandFlashLock();
 
-        int Execute();
+        int32_t Execute();
 
     private:
     };

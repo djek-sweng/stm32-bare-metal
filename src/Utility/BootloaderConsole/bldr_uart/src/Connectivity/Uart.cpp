@@ -40,7 +40,7 @@ namespace Connectivity
         if (-1 == _fid)
         {
             perror("Opening serial port failed.");
-            return -1;
+            return FAILURE;
         }
 
         /* Flush buffers of device. */
@@ -54,27 +54,30 @@ namespace Connectivity
         {
             perror("Getting options of serial port failed.");
             close(_fid);
-            return -1;
+            return FAILURE;
         }
 
         /* Clear options. */
-        REG_CLR(options.c_iflag, INLCR
-                                 | IGNCR
-                                 | ICRNL
-                                 | IXON
-                                 | IXOFF
-                                 );
+        REG_CLR(options.c_iflag,
+            INLCR
+            | IGNCR
+            | ICRNL
+            | IXON
+            | IXOFF
+        );
 
-        REG_CLR(options.c_oflag, ONLCR
-                                 | OCRNL
-                                 );
+        REG_CLR(options.c_oflag,
+            ONLCR
+            | OCRNL
+        );
 
-        REG_CLR(options.c_lflag, ECHO
-                                 | ECHONL
-                                 | ICANON
-                                 | ISIG
-                                 | IEXTEN
-                                 );
+        REG_CLR(options.c_lflag,
+            ECHO
+            | ECHONL
+            | ICANON
+            | ISIG
+            | IEXTEN
+        );
 
         /* Setup timeouts. */
         options.c_cc[VTIME] = 1;
@@ -98,14 +101,14 @@ namespace Connectivity
         {
             perror("Setting output baud rate failed.");
             close(_fid);
-            return -1;
+            return FAILURE;
         }
 
         if (0 != cfsetispeed(&options, cfgetospeed(&options)))
         {
             perror("Setting input baud rate failed.");
             close(_fid);
-            return -1;
+            return FAILURE;
         }
 
         /* Setup attributes. */
@@ -113,7 +116,7 @@ namespace Connectivity
         {
             perror("Setting attributes failed.");
             close(_fid);
-            return -1;
+            return FAILURE;
         }
 
         return _fid;
@@ -137,7 +140,7 @@ namespace Connectivity
             if (r < 0)
             {
                 perror("Reading from port failed.");
-                return -1;
+                return FAILURE;
             }
 
             /* Timeout. */
@@ -158,9 +161,9 @@ namespace Connectivity
         if (size != write(_fid, buffer, size))
         {
             perror("Writing to port failed.");
-            return -1;
+            return FAILURE;
         }
 
-        return 0;
+        return NO_FAILURE;
     }
 }

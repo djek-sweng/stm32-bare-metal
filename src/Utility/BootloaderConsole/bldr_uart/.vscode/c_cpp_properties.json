@@ -7,8 +7,7 @@
           "${workspaceFolder}/src",
           "${workspaceFolder}/src/Bootloader",
           "${workspaceFolder}/src/Connectivity",
-          "${workspaceFolder}/../../../Library/Common",
-          "${workspaceFolder}/../../../Library/Bootloader"
+          "${workspaceFolder}/src/Cache"
         ],
         "defines": [],
         "macFrameworkPath": [

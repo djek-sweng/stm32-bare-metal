@@ -14,7 +14,7 @@ namespace Bootloader
 {
     Command::Command(
         const char* device,
-        int baudRate
+        uint32_t baudRate
     )
     {
         _uart = new Uart(device, baudRate);
@@ -26,8 +26,7 @@ namespace Bootloader
         Close();
     }
 
-    int Command::TransmitReceive(BLDR_CommandMessage_t* commandMessageTx,
-                                 BLDR_CommandMessage_t* commandMessageRx)
+    int32_t Command::Transmit(BLDR_CommandMessage_t* commandMessageTx)
     {
         /* First update Crc16 of transmit message. */
         BLDR_UpdateCrc16(commandMessageTx);
@@ -43,6 +42,12 @@ namespace Bootloader
 
         _uart->Transmit((uint8_t*)&commandMessageTx->Crc16, 2);
 
+        return NO_FAILURE;
+    }
+
+    int32_t Command::Receive(BLDR_CommandMessage_t* commandMessageRx
+    )
+    {
         /* Receive message. */
         BLDR_InitCommandMessageStruct(commandMessageRx);
 
@@ -56,10 +61,10 @@ namespace Bootloader
 
         _uart->Receive((uint8_t*)&commandMessageRx->Crc16, 2);
 
-        return 0;
+        return NO_FAILURE;
     }
 
-    void Command::PrintMessage(BLDR_CommandMessage_t* commandMessage, string title)
+    void Command::Print(BLDR_CommandMessage_t* commandMessage, string title)
     {
         char text[32];
 
@@ -78,6 +83,13 @@ namespace Bootloader
         {
             SPRINTF(text, "%02X", commandMessage->Payload[i]);
             cout << text << " ";
+
+            /* Break line after 16 bytes. */
+            if (0 == (i+1)%16)
+            {
+                cout << endl;
+                cout << "         ";
+            }
         }
         cout << endl;
 
