@@ -30,7 +30,7 @@ namespace Connectivity
         DeInit();
     }
 
-    int Uart::Init()
+    int32_t Uart::Init()
     {
         struct termios options;
 
@@ -122,12 +122,12 @@ namespace Connectivity
         return _fid;
     }
 
-    int Uart::DeInit()
+    int32_t Uart::DeInit()
     {
         return close(_fid);
     }
 
-    int Uart::Receive(uint8_t* buffer, uint8_t size)
+    int32_t Uart::Receive(uint8_t* buffer, uint8_t size)
     {
         int rest = size;
 
@@ -156,7 +156,7 @@ namespace Connectivity
         return size;
     }
 
-    int Uart::Transmit(uint8_t* buffer, uint8_t size)
+    int32_t Uart::Transmit(uint8_t* buffer, uint8_t size)
     {
         if (size != write(_fid, buffer, size))
         {

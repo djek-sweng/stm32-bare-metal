@@ -64,7 +64,7 @@ namespace Bootloader
         return NO_FAILURE;
     }
 
-    void Command::Print(BLDR_CommandMessage_t* commandMessage, string title)
+    int32_t Command::Print(BLDR_CommandMessage_t* commandMessage, string title)
     {
         char text[32];
 
@@ -96,10 +96,12 @@ namespace Bootloader
         cout << "Crc16:   ";
         SPRINTF(text, "%02X", commandMessage->Crc16);
         cout << text << " " << endl;
+
+        return NO_FAILURE;
     }
 
-    void Command::Close()
+    int32_t Command::Close()
     {
-        _uart->DeInit();
+        return _uart->DeInit();
     }
 }

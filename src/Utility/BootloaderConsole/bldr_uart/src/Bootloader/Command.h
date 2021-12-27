@@ -24,8 +24,8 @@ namespace Bootloader
 
         int32_t Transmit(BLDR_CommandMessage_t* commandMessageTx);
         int32_t Receive(BLDR_CommandMessage_t* commandMessageRx);
-        void Print(BLDR_CommandMessage_t* commandMessage, string title = "");
-        void Close();
+        int32_t Print(BLDR_CommandMessage_t* commandMessage, string title = "");
+        int32_t Close();
 
         virtual int32_t Execute() = 0;
 
