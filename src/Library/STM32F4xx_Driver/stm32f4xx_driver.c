@@ -191,6 +191,13 @@ int32_t IWDG_Reload(IWDG_HandleTypeDef* iwdg)
   return NO_FAILURE;
 }
 
+int32_t IWDG_StopDebugMCU(void)
+{
+  __HAL_DBGMCU_FREEZE_IWDG();
+
+  return NO_FAILURE;
+}
+
 #endif /* HAL_IWDG_MODULE_ENABLED */
 
 /*--------------------------------------------------------------------------------------------------------------------*/

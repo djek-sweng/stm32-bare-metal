@@ -116,6 +116,7 @@ int32_t   FLASH_ProgramByteBuffer             (uint32_t address, uint8_t* data, 
 
 #if defined(HAL_IWDG_MODULE_ENABLED)
 int32_t   IWDG_Reload                         (IWDG_HandleTypeDef* iwdg);
+int32_t   IWDG_StopDebugMCU                   (void);
 #endif
 
 #if defined(HAL_UART_MODULE_ENABLED)

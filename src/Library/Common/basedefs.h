@@ -66,6 +66,9 @@ extern "C" {
                                         *ptr = (uint8_t) dat;            \
                                       } while(0U)
 
+/* Clear register. */
+#define REG_CLR(reg,mask)             (reg &= ~(mask))
+
 /* Stop here (and hold in endless loop). */
 #define STOP_HERE()                   do {            \
                                         for (;;) {    \
