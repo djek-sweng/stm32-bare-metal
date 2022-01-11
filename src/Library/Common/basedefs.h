@@ -93,11 +93,19 @@ extern "C" {
 #define GET_MIN(a,b)                  (((a) < (b)) ? (a) : (b))
 #define GET_MAX(a,b)                  (((a) > (b)) ? (a) : (b))
 
-/* Logical values. */
-typedef enum LogicalValue
+/* Boolean values. */
+typedef enum BooleanValue
 {
   FALSE = 0,
   TRUE = !FALSE
+} BooleanValue_t;
+
+/* Logical values. */
+typedef enum LogicalValue
+{
+  LOW = 0,
+  HIGH = 1,
+  TRI_STATE = 2
 } LogicalValue_t;
 
 /* Return states. */

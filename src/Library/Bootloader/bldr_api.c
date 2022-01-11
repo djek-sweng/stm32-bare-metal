@@ -51,6 +51,18 @@ EXTERN void    cb_BLDR_ExecuteBeforeCommandJump           (BLDR_CommandMessage_t
 /*--------------------------------------------------------------------------------------------------------------------*/
 /* functions */
 /*--------------------------------------------------------------------------------------------------------------------*/
+void BLDR_Init(void)
+{
+  if (TRUE == cb_BLDR_IsBootloaderRequest())
+  {
+    return;
+  }
+
+  STOP_HERE();
+
+  prv_BLDR_CommandJump(FLASH_ADDRESS_S4, 0);
+}
+
 int32_t BLDR_ExecuteCommand(BLDR_CommandMessage_t* messageRx, BLDR_CommandMessage_t* messageTx,
                             BLDR_SystemState_t* systemState)
 {

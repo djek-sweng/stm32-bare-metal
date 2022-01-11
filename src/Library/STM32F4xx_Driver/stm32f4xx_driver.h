@@ -119,6 +119,10 @@ int32_t   IWDG_Reload                         (IWDG_HandleTypeDef* iwdg);
 int32_t   IWDG_StopDebugMCU                   (void);
 #endif
 
+#if defined(HAL_GPIO_MODULE_ENABLED)
+int32_t   GPIO_ReadPin                        (GPIO_TypeDef* port, uint16_t pin, LogicalValue_t* level);
+#endif
+
 #if defined(HAL_UART_MODULE_ENABLED)
 int32_t   UART_Transmit                       (UART_HandleTypeDef* uart, uint8_t* data, uint16_t size, uint32_t timeout);
 int32_t   UART_Receive                        (UART_HandleTypeDef* uart, uint8_t* data, uint16_t size, uint32_t timeout);

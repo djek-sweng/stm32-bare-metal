@@ -201,6 +201,23 @@ int32_t IWDG_StopDebugMCU(void)
 #endif /* HAL_IWDG_MODULE_ENABLED */
 
 /*--------------------------------------------------------------------------------------------------------------------*/
+#if defined(HAL_GPIO_MODULE_ENABLED)
+
+int32_t GPIO_ReadPin(GPIO_TypeDef* port, uint16_t pin, LogicalValue_t* level)
+{
+  *level = LOW;
+
+  if (GPIO_PIN_RESET != HAL_GPIO_ReadPin(port, pin))
+  {
+    *level = HIGH;
+  }
+
+  return NO_FAILURE;
+}
+
+#endif /* HAL_GPIO_MODULE_ENABLED */
+
+/*--------------------------------------------------------------------------------------------------------------------*/
 #if defined(HAL_UART_MODULE_ENABLED)
 
 int32_t UART_Transmit(UART_HandleTypeDef* uart, uint8_t* data, uint16_t size, uint32_t timeout)

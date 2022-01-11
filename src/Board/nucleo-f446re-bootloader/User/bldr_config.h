@@ -48,6 +48,30 @@ STATIC INLINE void cb_BLDR_JumpDeInit(void)
   __NOP();
 }
 
+STATIC INLINE BooleanValue_t cb_BLDR_IsBootloaderRequest(void)
+{
+  LogicalValue_t level;
+  uint32_t reg = LOW;
+
+  /* Debouncing level of input pin. */
+  for (int i=0; i<8; i++)
+  {
+    GPIO_ReadPin(PB_BLUE_GPIO_Port, PB_BLUE_Pin, &level);
+
+    reg |= (level << i);
+
+    DelayMs(10);
+  }
+
+  /* Is the blue user push button hold down? */
+  if (LOW == reg)
+  {
+    return TRUE;
+  }
+
+  return FALSE;
+}
+
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------------------------------------------------*/
 

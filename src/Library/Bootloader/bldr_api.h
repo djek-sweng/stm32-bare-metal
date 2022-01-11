@@ -21,6 +21,7 @@ extern "C" {
 /*--------------------------------------------------------------------------------------------------------------------*/
 /* prototypes */
 /*--------------------------------------------------------------------------------------------------------------------*/
+void    BLDR_Init          (void);
 int32_t BLDR_ExecuteCommand(BLDR_CommandMessage_t* messageRx, BLDR_CommandMessage_t* messageTx,
                             BLDR_SystemState_t* systemState);
 

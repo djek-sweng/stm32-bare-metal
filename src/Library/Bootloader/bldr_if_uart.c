@@ -32,6 +32,8 @@ int32_t BLDR_IfUartInit(void* arg)
 {
   NO_WARNING(arg);
 
+  BLDR_Init();
+
   return NO_FAILURE;
 }
 

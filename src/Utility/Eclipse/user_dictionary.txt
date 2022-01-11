@@ -16,3 +16,5 @@ msr
 msp
 bx
 mega
+jan
+debouncing
