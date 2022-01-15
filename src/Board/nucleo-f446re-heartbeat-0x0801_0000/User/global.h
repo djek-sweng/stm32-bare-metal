@@ -18,6 +18,7 @@ extern "C" {
 #include "basedefs.h"
 #include "stm32f4xx_driver.h"
 #include "main.h"
+#include "iwdg.h"
 #include "led.h"
 #include "task.h"
 #include "tim.h"

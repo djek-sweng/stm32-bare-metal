@@ -1,8 +1,8 @@
 /*
  * bldr_config.h
  *
- *  Created on: 9 Sep 2021
- *      Author: djek
+ *  Created on: Sep 9, 2021
+ *      Author: djek-sweng
  */
 
 #ifndef BLDR_CONFIG_H_

@@ -1,12 +1,12 @@
 /*
- * led.h
+ * iwdg.h
  *
- *  Created on: Sep 9, 2021
+ *  Created on: Jan 15, 2022
  *      Author: djek-sweng
  */
 
-#ifndef LED_H_
-#define LED_H_
+#ifndef IWDG_H_
+#define IWDG_H_
 
 #ifdef __cplusplus
 extern "C" {
@@ -17,9 +17,9 @@ extern "C" {
 
 #include "main.h"
 
-#define LED_GREEN_TOGGLE()      (HAL_GPIO_TogglePin(LED_GREEN_GPIO_Port, LED_GREEN_Pin))
+#define IWDG_GO_GET_THE_STICK()   (IWDG_Reload(&hiwdg))
 
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------------------------------------------------*/
 
-#endif /* LED_H_ */
+#endif /* IWDG_H_ */

@@ -37,6 +37,7 @@ extern "C" {
 
 /* Exported types ------------------------------------------------------------*/
 /* USER CODE BEGIN ET */
+extern IWDG_HandleTypeDef hiwdg;
 extern TIM_HandleTypeDef htim7;
 extern UART_HandleTypeDef huart2;
 /* USER CODE END ET */

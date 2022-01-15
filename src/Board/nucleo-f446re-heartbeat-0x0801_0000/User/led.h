@@ -19,6 +19,17 @@ extern "C" {
 
 #define LED_GREEN_TOGGLE()      (HAL_GPIO_TogglePin(LED_GREEN_GPIO_Port, LED_GREEN_Pin))
 
+#define LED_HEART_BEAT(t)       do {                      \
+                                  for (int i=0; i<2; i++) \
+                                  {                       \
+                                    LED_GREEN_TOGGLE();   \
+                                    DelayMs(t);           \
+                                    LED_GREEN_TOGGLE();   \
+                                    DelayMs(t);           \
+                                  }                       \
+                                  DelayMs(t*16);          \
+                                } while(0U)
+
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------------------------------------------------*/
 
