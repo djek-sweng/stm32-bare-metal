@@ -19,6 +19,8 @@
 /*--------------------------------------------------------------------------------------------------------------------*/
 /* prototypes */
 /*--------------------------------------------------------------------------------------------------------------------*/
+A_NORETURN
+STATIC void    prv_BLDR_IfUartLoop              (void* arg);
 STATIC int32_t prv_BLDR_IfUartTransmit          (uint8_t* data, uint16_t size);
 STATIC int32_t prv_BLDR_IfUartReceive           (uint8_t* data, uint16_t size);
 STATIC int32_t prv_BLDR_IfUartCommandTransmit   (BLDR_CommandMessage_t* message);
@@ -28,17 +30,18 @@ STATIC void    prv_BLDR_IfUartBeforeNoReturn    (BLDR_CommandMessage_t* messageR
 /*--------------------------------------------------------------------------------------------------------------------*/
 /* functions */
 /*--------------------------------------------------------------------------------------------------------------------*/
-int32_t BLDR_IfUartInit(void* arg)
+A_NORETURN
+void BLDR_IfUartEnter(void* arg)
 {
-  NO_WARNING(arg);
-
   BLDR_Init();
 
-  return NO_FAILURE;
+  prv_BLDR_IfUartLoop(NULL);
+
+  NO_RETURN_NEVER_COME_HERE();
 }
 
 A_NORETURN
-void BLDR_IfUartStart(void* arg)
+void prv_BLDR_IfUartLoop(void* arg)
 {
   NO_WARNING(arg);
 
@@ -67,8 +70,7 @@ void BLDR_IfUartStart(void* arg)
     systemState.CommandCounter++;
   }
 
-  /* Should never come here. */
-  STOP_HERE();
+  NO_RETURN_NEVER_COME_HERE();
 }
 
 STATIC int32_t prv_BLDR_IfUartTransmit(uint8_t* data, uint16_t size)

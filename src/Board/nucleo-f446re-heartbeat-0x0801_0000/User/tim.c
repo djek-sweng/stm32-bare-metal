@@ -27,5 +27,5 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
   NO_WARNING(htim);
 
-  LED_GREEN_TOGGLE();
+  /* Do something here. */
 }

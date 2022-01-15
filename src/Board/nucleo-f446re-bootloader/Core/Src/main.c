@@ -104,12 +104,10 @@ int main(void)
   /****************************************************************************/
   /****************************************************************************/
 
-  /* Initialize and start bootloader. */
-  BLDR_IfUartInit (NULL);
-  BLDR_IfUartStart(NULL);
+  /* Enter UART bootloader. */
+  BLDR_IfUartEnter(NULL);
 
-  /* No return function, should never come here. */
-  STOP_HERE();
+  NO_RETURN_NEVER_COME_HERE();
 
   /****************************************************************************/
   /****************************************************************************/

@@ -58,9 +58,7 @@ void BLDR_Init(void)
     return;
   }
 
-  STOP_HERE();
-
-  prv_BLDR_CommandJump(FLASH_ADDRESS_S4, 0);
+  prv_BLDR_CommandJump(BLDR_DEFAULT_JUMP_ADDRESS, 0);
 }
 
 int32_t BLDR_ExecuteCommand(BLDR_CommandMessage_t* messageRx, BLDR_CommandMessage_t* messageTx,

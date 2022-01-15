@@ -76,6 +76,8 @@ extern "C" {
                                         }             \
                                       } while(0U)
 
+#define NO_RETURN_NEVER_COME_HERE()   STOP_HERE()
+
 /* Optional keywords. */
 #define CONST                         const
 #define VOLATILE                      volatile

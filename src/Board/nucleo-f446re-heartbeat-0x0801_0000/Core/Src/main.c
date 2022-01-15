@@ -22,7 +22,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "global.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -101,7 +101,19 @@ int main(void)
   /* Initialize interrupts */
   MX_NVIC_Init();
   /* USER CODE BEGIN 2 */
+  /****************************************************************************/
+  /****************************************************************************/
 
+  /* Run timer and its interrupt. */
+  TIM_Run();
+
+  /* Run application task. */
+  TASK_Run(NULL);
+
+  NO_RETURN_NEVER_COME_HERE();
+
+  /****************************************************************************/
+  /****************************************************************************/
   /* USER CODE END 2 */
 
   /* Infinite loop */

@@ -106,8 +106,7 @@ int main(void)
   /* Run application task. */
   TASK_Run(NULL);
 
-  /* No return function, should never come here. */
-  STOP_HERE();
+  NO_RETURN_NEVER_COME_HERE();
 
   /****************************************************************************/
   /****************************************************************************/
