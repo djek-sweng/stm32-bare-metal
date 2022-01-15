@@ -1,35 +1,27 @@
 /*
- * bldr_api.h
+ * retarget.c
  *
- *  Created on: Jul 20, 2021
+ *  Created on: Jan 15, 2022
  *      Author: djek-sweng
  */
-
-#ifndef BLDR_API_H_
-#define BLDR_API_H_
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 /*--------------------------------------------------------------------------------------------------------------------*/
 /* includes */
 /*--------------------------------------------------------------------------------------------------------------------*/
-#include <stdint.h>
-#include "bldr_defs.h"
+#include "global.h"
 
 /*--------------------------------------------------------------------------------------------------------------------*/
-/* prototypes */
+/* defines */
 /*--------------------------------------------------------------------------------------------------------------------*/
-void    BLDR_Init          (void);
-int32_t BLDR_ExecuteCommand(BLDR_CommandMessage_t* messageRx, BLDR_CommandMessage_t* messageTx,
-                            BLDR_SystemState_t* systemState);
+#define IO_PUTCHAR_RETARGET int __io_putchar(int ch)
 
 /*--------------------------------------------------------------------------------------------------------------------*/
+/* functions */
 /*--------------------------------------------------------------------------------------------------------------------*/
+IO_PUTCHAR_RETARGET
+{
+  /* Retarget the C library printf function to UART2. */
+  HAL_UART_Transmit(&huart2, (uint8_t*)&ch, 1, HAL_MAX_DELAY);
 
-#ifdef __cplusplus
+  return ch;
 }
-#endif
-
-#endif /* BLDR_API_H_ */

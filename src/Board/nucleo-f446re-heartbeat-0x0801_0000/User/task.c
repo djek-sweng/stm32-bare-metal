@@ -1,35 +1,33 @@
 /*
- * bldr_api.h
+ * task.c
  *
- *  Created on: Jul 20, 2021
+ *  Created on: Jan 15, 2022
  *      Author: djek-sweng
  */
-
-#ifndef BLDR_API_H_
-#define BLDR_API_H_
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 /*--------------------------------------------------------------------------------------------------------------------*/
 /* includes */
 /*--------------------------------------------------------------------------------------------------------------------*/
-#include <stdint.h>
-#include "bldr_defs.h"
+#include "global.h"
 
 /*--------------------------------------------------------------------------------------------------------------------*/
-/* prototypes */
+/* defines */
 /*--------------------------------------------------------------------------------------------------------------------*/
-void    BLDR_Init          (void);
-int32_t BLDR_ExecuteCommand(BLDR_CommandMessage_t* messageRx, BLDR_CommandMessage_t* messageTx,
-                            BLDR_SystemState_t* systemState);
+#define TIME_HEART_BEAT   (60)  /* in ms */
 
 /*--------------------------------------------------------------------------------------------------------------------*/
+/* functions */
 /*--------------------------------------------------------------------------------------------------------------------*/
+A_NORETURN void TASK_Run(void* param)
+{
+  NO_WARNING(param);
 
-#ifdef __cplusplus
+  for (int i=0;;i++)
+  {
+    IWDG_GO_GET_THE_STICK();
+
+    LED_HEART_BEAT(TIME_HEART_BEAT);
+
+    printf("Bum bum .. %d\n\r", i);
+  }
 }
-#endif
-
-#endif /* BLDR_API_H_ */
