@@ -42,10 +42,20 @@ _Min_Heap_Size = 0x200 ; /* required amount of heap */
 _Min_Stack_Size = 0x400 ; /* required amount of stack */
 
 /* Memories definition */
+_VTAB_OFFSET  = 64K;
+
+_RAM_SIZE     = 128K;
+_RAM_ORIGIN   = 0x20000000;
+_RAM_LENGTH   = _RAM_SIZE;
+
+_FLASH_SIZE   = 512K;
+_FLASH_ORIGIN = 0x08000000  + _VTAB_OFFSET;
+_FLASH_LENGTH = _FLASH_SIZE - _VTAB_OFFSET;
+
 MEMORY
 {
-  RAM    (xrw)    : ORIGIN = 0x20000000,   LENGTH = 128K
-  FLASH    (rx)    : ORIGIN = 0x08010000,  LENGTH = 512K-64K
+  RAM   (xrw) : ORIGIN = _RAM_ORIGIN,   LENGTH = _RAM_LENGTH
+  FLASH (xr)  : ORIGIN = _FLASH_ORIGIN, LENGTH = _FLASH_LENGTH
 }
 
 /* Sections */

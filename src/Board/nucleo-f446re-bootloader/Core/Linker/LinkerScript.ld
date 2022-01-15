@@ -33,13 +33,17 @@ _estack = ORIGIN(RAM) + LENGTH(RAM);  /* end of "RAM" Ram type memory */
 _Min_Heap_Size  = 0x200;  /* required amount of heap  */
 _Min_Stack_Size = 0x400;  /* required amount of stack */
 
-_RAM_ORIGIN = 0x20000000;
-_RAM_LENGTH = 128K;
-
-_FLASH_ORIGIN = 0x08000000;
-_FLASH_LENGTH = 64K;  /* 512K */
-
 /* Memories definition */
+_VTAB_OFFSET  = 0;
+
+_RAM_SIZE     = 128K;
+_RAM_ORIGIN   = 0x20000000;
+_RAM_LENGTH   = _RAM_SIZE;
+
+_FLASH_SIZE   = 64K; /* 512K */
+_FLASH_ORIGIN = 0x08000000  + _VTAB_OFFSET;
+_FLASH_LENGTH = _FLASH_SIZE - _VTAB_OFFSET;
+
 MEMORY
 {
   RAM   (xrw) : ORIGIN = _RAM_ORIGIN,   LENGTH = _RAM_LENGTH
